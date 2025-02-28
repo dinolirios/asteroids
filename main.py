@@ -4,6 +4,7 @@ from player import *
 from asteroid import *
 from asteroidfield import *
 from shot import *
+from circleshape import *
 
 def main():
     pygame.init()    
@@ -39,6 +40,11 @@ def main():
                 print("Game over!")
                 pygame.quit()
                 exit()
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    shot.kill()  # Remove bullet
+                    asteroid.kill()  # Remove asteroid
+                    print("Asteroid destroyed!")
 
         screen.fill((0, 0, 0))
         for sprite in drawable:
